@@ -73,7 +73,7 @@
 						<h3 id="version-info">Version 0.4.2 Release Date 7.2.12</h3>
 					</div>
 					<p>
-					Readium<sup>TM</sup>, a project of the International Digital Publishing Forum (IDPF) and supporters, is an open source reference system and rendering engine for EPUB&reg; publications.  To learn more, visit the <a href="http://readium.org/">project homepage</a>. To date, the project development has been lead by <a href="http://evidentpoint.com/">Evident Point</a> and <a href="http://www.bluefirereader.com/">Bluefire Productions</a>. To contribute visit the <a href="https://github.com/readium/readium">github repository</a>
+					<span id="i18n_html_readium_tm_a_project">Readium<sup>TM</sup>, a project of the International Digital Publishing Forum (IDPF) and supporters, is an open source reference system and rendering engine for EPUB&reg; publications.  To learn more, visit the <a href="http://readium.org/">project homepage</a>. To date, the project development has been lead by <a href="http://evidentpoint.com/">Evident Point</a> and <a href="http://www.bluefirereader.com/">Bluefire Productions</a>. To contribute visit the <a href="https://github.com/readium/readium">github repository</a></span>
 					</p>
 					<div>
 						<img src="/images/info_modal/partner_logos.png" alt="Readium partners logo">
@@ -85,36 +85,36 @@
 		
 				<div class="modal-header">
 					<a class="close" data-dismiss="modal" role="button" aria-label="Close">&times;</a>
-					<h3>Add Book To Readium Library:</h3>
+					<h3><span id="i18n_add_book_to_readium_library">Add Book To Readium Library:</span></h3>
 				</div>
 
 				<div class="modal-body">
 					<form class="form-horizontal">
 		        		<div class="control-group">
-							<label for="book-url">From the web:</label>
+							<label for="book-url"><span id="i18n_from_the_web">From the web:</span></label>
 							<div class='controls'>
 							<input type='text' id='book-url' class="span3" placeholder="http://">
-							<p class="help-block">Enter a URL to a .epub file</p>
+							<p class="help-block"><span id="i18n_enter_a_url">Enter a URL to a .epub file</span></p>
 							</div>
 						</div>
 						<div class="control-group">
-							<label for="files">From Local File:</label>
+							<label for="files"><span id="i18n_from_local_file">From Local File:</span></label>
 							<div class="controls">
 							<input type="file" id="files" name="files[]" multiple />
 							</div>
 						</div>
 						<div class="control-group" id='unpacked-input'>
-							<label for="dir_input">Unpacked Directory:</label>
+							<label for="dir_input"><span id="i18n_unpacked_directory">Unpacked Directory:</span></label>
 							<div class="controls">
 								<input type="file" id="dir_input" webkitdirectory="" directory="">
 							</div>
 						</div>
 						<div class="control-group">
-		            		<label class="control-label" for="optionsCheckbox">Validate:</label>
+		            		<label class="control-label" for="optionsCheckbox"><span id="i18n_validate">Validate:</span></label>
 		            		<div class="controls">
 		              			<label class="checkbox" for="optionsCheckbox">
 		                		<input type="checkbox" id="optionsCheckbox" value="option1">
-		                		Confirm that this book complies with ePUB standards
+		                		<span id="i18n_confirm_that_this_book">Confirm that this book complies with ePUB standards</span>
 		              			</label>
 		            		</div>
 		          		</div>
@@ -122,8 +122,8 @@
 				</div>
 
 				<div class="modal-footer">
-					<button id='url-button' class='btn btn-primary'>Add Book</button>
-					<a href="#" class="btn" data-dismiss="modal" role="button">Cancel</a>
+					<button id='url-button' class='btn btn-primary'><span id="i18n_add_book">Add Book</span></button>
+					<a href="#" class="btn" data-dismiss="modal" role="button"><span id="i18n_cancel">Cancel</span></a>
 				</div>
 
 			</div><!-- end add le book -->
@@ -132,7 +132,7 @@
 			<div class="modal fade" id="readium-options-modal"  style="display: none">
 				<div class="modal-header">
 					<a class="close" data-dismiss="modal" role="button" aria-label="Close">&times;</a>
-					<h2>Readium Options:</h2>
+					<h2><span id="i18n_readium_options">Readium Options:</span></h2>
 				</div>
 				
 				<div class="modal-body">
@@ -143,7 +143,7 @@
 				            <div class="controls">
 				              <label class="checkbox" for="paginate_everything">
 				                <input type="checkbox" id="paginate_everything" value="paginate_everything">
-				                Paginate all reflowable ePUB content
+				                <span id="i18n_paginate_all">Paginate all reflowable ePUB content</span>
 				              </label>
 				            </div>
 				          </div>
@@ -153,7 +153,7 @@
 				            <div class="controls">
 				              <label class="checkbox" for="hijack_epub_urls">
 				                <input type="checkbox" id="hijack_epub_urls" value="hijack_epub_urls">
-				                Automatically open *.epub urls in readium
+				                <span id="i18n_automatically">Automatically open *.epub urls in readium</span>
 				              </label>
 				            </div>
 				          </div>
@@ -163,7 +163,7 @@
 				            <div class="controls">
 				              <label class="checkbox" for="verbose_unpacking">
 				                <input type="checkbox" id="verbose_unpacking" value="verbose_unpacking">
-				                Show warning messages when unpacking EPUB files
+				                <span id="i18n_show_warning">Show warning messages when unpacking EPUB files</span>
 				              </label>
 				            </div>
 				          </div>
@@ -173,8 +173,8 @@
 	  			</div>
 				
 				<div class="modal-footer">
-	                <a href="#" class="btn btn-primary" id="save-settings-btn" role="button">Save changes</a>
-	                <a href="#" class="btn" data-dismiss="modal" role="button">Close</a>
+	                <a href="#" class="btn btn-primary" id="save-settings-btn" role="button"><span id="i18n_save_changes">Save changes</span></a>
+	                <a href="#" class="btn" data-dismiss="modal" role="button"><span id="i18n_close">Close</span></a>
 	            </div>
 			</div><!-- end le settings modal -->
 
@@ -201,9 +201,9 @@
 			</div>
 			
 			<div class="caption clearfix buttons">
-				<a href="#todo" class="btn read" data-book='<%= data.key %>' role="button">Read</a>
+				<a href="#todo" class="btn read" data-book='<%= data.key %>' role="button"><%= chrome.i18n.getMessage("i18n_read") || "Read" %></a>
 				<a href="#details-modal-<%= data.key %>" class="btn details" data-toggle="modal" role="button">
-					Details
+					<%= chrome.i18n.getMessage("i18n_details") || "Details" %>
 				</a>
 			</div>
 
@@ -211,7 +211,7 @@
 				<div class="pull-left modal-cover-wrap">
 					<img class='details-cover-image' src='<%= data.cover_href %>' width='150' height='220' alt="ePUB cover image">
 					<div class="caption clearfix modal-buttons">
-				<a href="#todo" class="btn read" data-book='<%= data.key %>' role="button">Read</a>
+				<a href="#todo" class="btn read" data-book='<%= data.key %>' role="button"><%= chrome.i18n.getMessage("i18n_read") || "Read" %></a>
 				<a class="btn btn-danger delete pull-right" role="button">Delete</a>
 			</div>
 				</div>
@@ -266,6 +266,7 @@
 		<script src="/scripts/templates.js" type="text/javascript"></script>
 		<script src="/scripts/models/media_overlay_controller.js" type="text/javascript"></script>
 		<script src="/scripts/models/media_overlay_view_helper.js" type="text/javascript"></script>
+		<script src="/scripts/i18n.js" type="text/javascript"></script>
 		<!-- end scripts -->
 
 

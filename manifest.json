@@ -9,7 +9,8 @@
    "background" : {
       "page": "background/background.html"
     },
-   "description": "A reader for EPUB3 books.",
+   "description": "__MSG_chrome_extension_description__",
+   "default_locale" : "en_US",
    
    "icons": {
       "16": "images/main_icon/small.png",
