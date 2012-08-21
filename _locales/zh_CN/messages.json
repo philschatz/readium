@@ -50,6 +50,15 @@
   "i18n_modified_date" : {
     "message" : "Modified Date: "
   },
+  "i18n_id" : {
+    "message" : "ID: "
+  },
+  "i18n_epub_version" : {
+    "message" : "EPUB version: "
+  },
+  "i18n_created_at" : {
+    "message" : "Created at: "
+  },
   "i18n_format" : {
     "message" : "Format: "
   },

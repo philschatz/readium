@@ -14,9 +14,9 @@
 </div>
 
 <div class="caption clearfix buttons">
-	<a href="#todo" class="btn read" data-book='{{ data.key }}' role='button'>Read</a>
+	<a href="#todo" class="btn read" data-book='{{ data.key }}' role='button'>{{fetchInzMessage "i18n_read"}}</a>
 	<a href="#details-modal-{{ data.key }}" class="btn details" data-toggle="modal" role="button">
-		Details
+		{{fetchInzMessage "i18n_details"}}
 	</a>
 </div>
 
@@ -24,22 +24,22 @@
 	<div class="pull-left modal-cover-wrap">
 		<img class='details-cover-image' src='{{ data.cover_href }}' width='150' height='220' alt='ePUB cover'>
 		<div class="caption clearfix modal-buttons">
-			<a href="#" class="btn read" data-book='<%= data.key %>' role='button'>Read</a>
-			<a class="btn btn-danger delete pull-right" role='button'>Delete</a>
+			<a href="#" class="btn read" data-book='<%= data.key %>' role='button'>{{fetchInzMessage "i18n_read"}}</a>
+			<a class="btn btn-danger delete pull-right" role='button'>{{fetchInzMessage "i18n_delete"}}</a>
 		</div>
 	</div>
 	<div class='caption modal-book-info'>
 		<h3 class='green modal-title'>{{ data.title }}</h3>
-		<div class='modal-detail gap'>Author: {{orUnknown data.author}}</div>
-		<div class='modal-detail'>Publisher: {{orUnknown data.publisher}}</div>
-		<div class='modal-detail'>Pub Date: {{orUnknown data.pubdate}}</div>
-		<div class='modal-detail'>Modified Date: {{orUnknown data.modified_date}}</div>
-		<div class='modal-detail gap'>ID: {{orUnknown data.id}}</div>
-		<div class='modal-detail green'>Format: ePUB {{orUnknown data.epub_version}}</div>
-		<div class='modal-detail'>Added: {{orUnknown data.created_at}}</div>
+		<div class='modal-detail gap'>{{fetchInzMessage "i18n_author"}}{{orUnknown data.author}}</div>
+		<div class='modal-detail'>{{fetchInzMessage "i18n_publisher"}}{{orUnknown data.publisher}}</div>
+		<div class='modal-detail'>{{fetchInzMessage "i18n_pub_date"}}{{orUnknown data.pubdate}}</div>
+		<div class='modal-detail'>{{fetchInzMessage "i18n_modified_date"}}{{orUnknown data.modified_date}}</div>
+		<div class='modal-detail gap'>{{fetchInzMessage "i18n_id"}}{{orUnknown data.id}}</div>
+		<div class='modal-detail green'>{{fetchInzMessage "i18n_epub_version"}}{{orUnknown data.epub_version}}</div>
+		<div class='modal-detail'>{{fetchInzMessage "i18n_created_at"}}{{orUnknown data.created_at}}</div>
 	</div>
 	<div class='modal-detail source'>
-	<span class='green' style="padding-right: 10px">Source:</span>
+	<span class='green' style="padding-right: 10px">{{fetchInzMessage "i18n_source"}}</span>
 		{{orUnknown data.src_url}}
 	</div>
 </div>			
