@@ -15,7 +15,7 @@
 src_files:
   - spec/javascripts/test_namespace.js
   - lib/mock-ajax.js
-  - lib/jquery-1.7.1.min.js
+  - lib/jquery-1.8.2.min.js
   - lib/underscore.min.js
   - lib/backbone.min.js
   - lib/jath.js
