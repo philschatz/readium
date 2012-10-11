@@ -116,7 +116,8 @@ Readium.Models.EPUBController = Backbone.Model.extend({
 			"current_margin": this.get("current_margin"),
 			"two_up": this.get("two_up"),
 			"font_size": this.get("font_size"),
-			"key": this.get("key")
+			"key": this.get("key"),
+			"epubCFIs": this.get("epubCFIs")
 		};
 	},
 
