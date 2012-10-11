@@ -33,6 +33,7 @@ Readium.Views.PaginationViewBase = Backbone.View.extend({
 
     iframeLoadCallback: function(e) {
 		
+		this.initializeContextMenu("body", this.contextMenuItems, e.srcElement.contentWindow);
 		this.applyBindings( $(e.srcElement).contents() );
 		this.applySwitches( $(e.srcElement).contents() );
 		this.addSwipeHandlers( $(e.srcElement).contents() );
@@ -100,6 +101,12 @@ Readium.Views.PaginationViewBase = Backbone.View.extend({
         this.mediaOverlayController.off("change:active_mo", this.indicateMoIsPlaying);
 		this.resetEl();
 	},
+
+	contextMenuItems : { 
+
+        addBookmark : { name: "Add bookmark", callback: function () { alert("bookmark no-op"); } },
+        addComment : { name: "Add comment", callback: function () { alert("comment no-op"); } }
+    },
 
 	getBindings: function() {
 		var packDoc = this.model.epub.getPackageDocument();
@@ -216,12 +223,80 @@ Readium.Views.PaginationViewBase = Backbone.View.extend({
 		head = doc.getElementsByTagName("head")[0];
 		// if the content doc is SVG there is no head, and thus
 		// mathjax will not be required
-		if(head) {
+		if (head) {
 			script = doc.createElement("script");
 			script.type = "text/javascript";
 			script.src = MathJax.Hub.config.root+"/MathJax.js?config=readium-iframe";
 			head.appendChild(script);
 		}
+    },
+
+    // Description: Creates a context menu in the view's iframe, which is loaded with an EPUB content document.
+    // Arguments: a jquery selector string, a list of items for the context menu, the iframe to create the context
+    //   menu in. 
+    // Rationale: The Readium viewer contains an iframe in which EPUB content is displayed. Since Readium doesn't have 
+    //   any control over the structure of EPUB content, any additional features that need to be included in the context of the
+    //   iframe have to be injected by Readium. This is true of the context menu, which requires a script to be injected into
+    //   the iframe, which can then be accessed from the Readium viewer document. 
+    //   Because of the asynchronous nature of dyanmically loading this script, a number of checks have to be performed
+    //   to ensure that we don't cause problems for ourselves (such as loading the script twice, for example)
+    initializeContextMenu : function (contextSelector, menuItems, iframeWindow) {
+
+        var scriptElement;
+        var head; 
+
+        head = iframeWindow.document.getElementsByTagName("head")[0];
+
+        // Check if the script element has already been appended. If so, set up the context menu
+        if ($("script[src='contextMenu.min.js'] ", iframeWindow.document).length !== 0) {
+
+            // If this function hasn't been loaded, the context menu script element has been appended but is 
+            //   probably not yet loaded
+            if (!iframeWindow.createContextMenu) {
+
+                return;
+            }
+
+            // Get rid of any context menu that already exists for the specified selector
+            // REFACTORING CANDIDATE: This could be replaced by a check to see if a context menu already exists for the 
+            //   specified selector.
+            iframeWindow.$.contextMenu("destroy", contextSelector);
+
+            // Create context menu selector 
+            iframeWindow.createContextMenu(contextSelector, menuItems);
+        }
+        // Dynamically load the context menu selector
+        else {
+
+            // Rationale: This CSS is being loaded asynchronously. That's fine, it'll get there when it gets there and it 
+            //   probably won't affect the user. 
+            this.injectExternalCSS(window.location.origin + "/css/jquery.contextMenu.css", head);
+
+            // Inject the contextMenu script
+            scriptElement = document.createElement("script");
+            scriptElement.type = "text/javascript";
+            scriptElement.src = window.location.origin + "/lib/contextMenu.min.js";
+
+            // Create the context menu, once the script has been fully appended and loaded. 
+            $(scriptElement).on("load", function () {
+
+                iframeWindow.createContextMenu(contextSelector, menuItems);
+            });
+
+            head.appendChild(scriptElement);
+        }
+    },
+
+    // Description: Inject an external stylesheet into the specified head element
+    injectExternalCSS : function (CSSHref, headElement) {
+
+        var CSSLinkElement;
+
+        CSSLinkElement = document.createElement("link");
+        CSSLinkElement.rel = "stylesheet";
+        CSSLinkElement.type = "text/css";
+        CSSLinkElement.href = CSSHref;
+        headElement.appendChild(CSSLinkElement);
     },
 
     injectLinkHandler: function(iframe) {

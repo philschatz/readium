@@ -47,7 +47,6 @@ Readium.Views.ReflowablePaginationView = Readium.Views.PaginationViewBase.extend
 			that.injectTheme();
 			that.setNumPages();
 			that.applyKeydownHandler();
-			that.overrideContextMenu();
 
 			if (hashFragmentId) {
 
@@ -309,31 +308,6 @@ Readium.Views.ReflowablePaginationView = Readium.Views.PaginationViewBase.extend
 			}
 		});
 	},
-
-	// Get text node and character offset
-
-
-
-	// Description: Override the context menu with the jQuery-contextMenu plugin
-	overrideContextMenu : function () {
-
-		$.contextMenu({
-
-			selector: "section",
-
-			items: {
-
-				foo: {name: "Foo", callback: function(key, opt) { alert("Foo!"); }}
-			}
-		});
-
-	},
-
-	// Handle context menu click
-
-
-
-
 
 	adjustIframeColumns: function() {
 		var prop_dir = this.offset_dir;
