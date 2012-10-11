@@ -309,6 +309,68 @@ Readium.Views.ReflowablePaginationView = Readium.Views.PaginationViewBase.extend
 		});
 	},
 
+
+
+	// Get information for CFI generation and generate the CFI
+	generateAnnotationCFI : function () {
+
+		var contentDocument = $("#readium-flowing-content")[0].contentDocument;
+		var currSelection;
+		var startTextNode; 
+		var characterOffset;
+		var contentDocumentIdref;
+		var packageDocument;
+		var generatedCFI;
+		
+		currSelection = contentDocument.getSelection();
+		if (currSelection.anchorNode.nodeType !== 3) {
+
+			alert("No text selected");
+		}
+
+		// Get the starting text node
+		startTextNode = currSelection.anchorNode;
+
+		// Get the character offset
+		characterOffset = currSelection.anchorOffset;
+
+		// Get the content document idref
+		contentDocumentIdref = this.model.getCurrentSection().get("idref");
+
+		// Get the package document
+		// REFACTORING CANDIDATE: This is a temporary approach for retrieving a document representation of the 
+		//   package document. Probably best that the package model be able to return this representation of itself.
+        $.ajax({
+
+            type: "GET",
+            url: this.model.epub.get("root_url"),
+            dataType: "xml",
+            async: false,
+            success: function (response) {
+
+                packageDocument = response;
+            }
+        });
+
+		generatedCFI = EPUBcfi.Generator.generateCharacterOffsetCFI(startTextNode, characterOffset, contentDocumentIdref, packageDocument);
+
+		// Check validitiy of cfi
+		return generatedCFI;
+	},
+
+	// Generate a CFI and save bookmark information to the EPUB
+	createAnnotation : function () {
+
+	},
+
+	// Create bookmark
+	createBookmark : function () {
+
+		var bookmarkCFI = this.generateAnnotationCFI();
+
+		
+	},
+
 	adjustIframeColumns: function() {
 		var prop_dir = this.offset_dir;
 		var $frame = this.$('#readium-flowing-content');

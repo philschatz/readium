@@ -33,7 +33,7 @@ Readium.Views.PaginationViewBase = Backbone.View.extend({
 
     iframeLoadCallback: function(e) {
 		
-		this.initializeContextMenu("p", this.contextMenuItems, e.srcElement.contentWindow);
+		this.initializeContextMenu("body", this.contextMenuItems(), e.srcElement.contentWindow);
 		this.applyBindings( $(e.srcElement).contents() );
 		this.applySwitches( $(e.srcElement).contents() );
 		this.addSwipeHandlers( $(e.srcElement).contents() );
@@ -102,11 +102,23 @@ Readium.Views.PaginationViewBase = Backbone.View.extend({
 		this.resetEl();
 	},
 
-	contextMenuItems : { 
+	// Rationale: We have to be careful about the context in which these callback functions are being executed. This is
+	//   the reason for calling the methods within anonymous functions.
+	contextMenuItems : function () {
 
-        addBookmark : { name: "Add bookmark", callback: function () { alert("bookmark no-op"); } },
-        addComment : { name: "Add comment", callback: function () { alert("comment no-op"); } }
-    },
+		var that = this;
+
+		return { 
+
+	        addBookmark : { name: "Add bookmark", callback: 
+	        	function () {
+	        		that.createBookmark();
+		        }
+	        },
+
+	        addComment : { name: "Add comment", callback: function () { alert("comment no-op"); } }
+	    };
+	},
 
 	getBindings: function() {
 		var packDoc = this.model.epub.getPackageDocument();
