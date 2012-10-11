@@ -33,7 +33,7 @@ Readium.Views.PaginationViewBase = Backbone.View.extend({
 
     iframeLoadCallback: function(e) {
 		
-		this.initializeContextMenu("body", this.contextMenuItems, e.srcElement.contentWindow);
+		this.initializeContextMenu("p", this.contextMenuItems, e.srcElement.contentWindow);
 		this.applyBindings( $(e.srcElement).contents() );
 		this.applySwitches( $(e.srcElement).contents() );
 		this.addSwipeHandlers( $(e.srcElement).contents() );
