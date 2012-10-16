@@ -287,26 +287,26 @@ Readium.Views.ReflowablePaginationView = Readium.Views.PaginationViewBase.extend
 
 	injectCFIElements : function () {
 
-		// var that = this;
-		// var contentDocument;
-		// var epubCFIs;
+		var that = this;
+		var contentDocument;
+		var epubCFIs;
 
-		// // Get the content document (assumes a reflowable publication)
-		// contentDocument = $("#readium-flowing-content").contents()[0];
+		// Get the content document (assumes a reflowable publication)
+		contentDocument = $("#readium-flowing-content").contents()[0];
 
-		// // TODO: Could check to make sure the document returned from the iframe has the same name as the 
-		// //   content document specified by the href returned by the CFI.
+		// TODO: Could check to make sure the document returned from the iframe has the same name as the 
+		//   content document specified by the href returned by the CFI.
 
-		// // Inject elements for all the CFIs that reference this content document
-		// epubCFIs = this.model.get("epubCFIs");
-		// _.each(epubCFIs, function (cfi, key) {
+		// Inject elements for all the CFIs that reference this content document
+		epubCFIs = this.model.get("epubCFIs");
+		_.each(epubCFIs, function (cfi, key) {
 
-		// 	if (cfi.contentDocSpinePos === that.model.get("spine_position")) {
+			if (cfi.contentDocSpinePos === that.model.get("spine_position")) {
 
-		// 		// TODO: handle exceptions
-		// 		EPUBcfi.Interpreter.injectElement(key, contentDocument, cfi.payload);	
-		// 	}
-		// });
+				// TODO: handle exceptions
+				EPUBcfi.Interpreter.injectElement(key, contentDocument, cfi.payload, ["cfi-bookmark"], [], ["MathJax_Message"]);	
+			}
+		});
 	},
 
 	// Create bookmark
@@ -318,10 +318,10 @@ Readium.Views.ReflowablePaginationView = Readium.Views.PaginationViewBase.extend
 		this.model.addCFIwithPayload(
 			bookmarkCFI, 
 			this.model.get("spine_position"), 
-			"<span id='" + elementId + "' class=cfi_marker data:cfi='" + bookmarkCFI + "' style=background:yellow;>B</span>");
+			"<span id='" + elementId + "' class='cfi-bookmark' data:cfi='" + bookmarkCFI + "' style=background:yellow;>B</span>");
 
 		// Save the bookmark that's been added
-		// this.model.save();
+		this.model.save();
 	},
 
 	// Get information for CFI generation and generate the CFI
@@ -365,7 +365,14 @@ Readium.Views.ReflowablePaginationView = Readium.Views.PaginationViewBase.extend
             }
         });
 
-		generatedCFI = EPUBcfi.Generator.generateCharacterOffsetCFI(startTextNode, characterOffset, contentDocumentIdref, packageDocument);
+		generatedCFI = EPUBcfi.Generator.generateCharacterOffsetCFI(
+			startTextNode, 
+			characterOffset, 
+			contentDocumentIdref, 
+			packageDocument,
+			["cfi_marker"],
+			[],
+			["MathJax_Message"]);
 
 		// Check validitiy of cfi
 		return generatedCFI;
