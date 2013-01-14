@@ -4,7 +4,7 @@ Readium.Models.LibraryItem = Backbone.Model.extend({
 	idAttribute: "key",
 	
 	getViewBookUrl: function(book) {
-		return "/viewer.html?book=" + this.get('key');
+		return "./viewer.html?book=" + this.get('key');
 	},
 
 	openInReader: function() {
@@ -17,8 +17,8 @@ Readium.Collections.LibraryItems = Backbone.Collection.extend({
 
 	model: Readium.Models.LibraryItem,
 
-	url: "/epub_content/metadata.json"
-	
+	url: "epub_content/metadata.json"
+
 });
 
 Readium.Views.LibraryItemView = Backbone.View.extend({

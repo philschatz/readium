@@ -12,20 +12,22 @@ if( !window.Readium ) {
 		Init: function() {
 			window.options = Readium.Models.ReadiumOptions.getInstance();
 			window.optionsView = new Readium.Views.ReadiumOptionsView({model: window.options});
-				
+
 			window.Library = new Readium.Collections.LibraryItems(window.ReadiumLibraryData);
 			window.lib_view = new Readium.Views.LibraryItemsView({collection: window.Library});
 			//window.fp_view = new Readium.Views.FilePickerView();
 			window.router = new Readium.Routers.ApplicationRouter({collection: window.Library});
 
-			Backbone.history.start({pushState: false});
+			Readium.HttpFileApi(function (api) {
+				Backbone.history.start({pushState: false, root: api.APP_ROOT_PATH});
+			});
 			// window.Library.fetch();
 			window.Library.trigger('reset');
 
 var hc = $('#library-items-container').hasClass("row-view");
 $("#block-view-btn").attr('aria-pressed', hc ? 'false' : 'true');
 $("#row-view-btn").attr('aria-pressed', hc ? 'true' : 'false');
-			
+
 			$("#block-view-btn").click(function(e) {
 $("#block-view-btn").attr('aria-pressed', 'true');
 $("#row-view-btn").attr('aria-pressed', 'false');

@@ -1,6 +1,12 @@
 Readium.HttpFileApi = function(initCallback) {
+
+    var APP_ROOT_PATH = window.location.pathname.replace(/\\/g,'/').replace(/\/[^\/]*$/, '') + '/';
+
     var api = {
+        APP_ROOT_PATH: APP_ROOT_PATH,
         readTextFile: function(path, readCallback, errorCallback) {
+            // Make sure paths are relative to the application root
+            path = APP_ROOT_PATH + path;
             $.ajax({
                 //'cache' : false,
                 'url' : path,
@@ -15,7 +21,7 @@ Readium.HttpFileApi = function(initCallback) {
         },
 
         getFsUri: function(path, successCallback, errorCallback) {
-            successCallback(document.location.protocol + '//' + document.location.host + path)
+            successCallback(document.location.protocol + '//' + document.location.host + APP_ROOT_PATH +  path)
         }
     }
 

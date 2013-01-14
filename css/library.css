@@ -2339,7 +2339,7 @@ a.label:hover, a.badge:hover {
 #logo-replace {
   height: 36px;
   width: 142px;
-  background-image: url("/images/top_bar/readium_logo.png");
+  background-image: url("./images/top_bar/readium_logo.png");
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -2349,7 +2349,7 @@ a.label:hover, a.badge:hover {
   #logo-replace {
     height: 48px;
     width: 48px;
-    background-image: url("/images/main_icon/medium.png"); }
+    background-image: url("./images/main_icon/medium.png"); }
 
   .navbar .brand {
     padding: 2px; } }

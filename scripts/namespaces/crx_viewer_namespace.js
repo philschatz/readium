@@ -9,7 +9,9 @@ window.Readium = {
 	Utils: {},
 	Init: function() {
 		_router = new Readium.Routers.ViewerRouter();
-		Backbone.history.start({pushState: true});
+		Readium.HttpFileApi(function (api) {
+			Backbone.history.start({pushState: true, root: api.APP_ROOT_PATH});
+		});
 	}
 };
 
